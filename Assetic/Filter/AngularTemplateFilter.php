@@ -35,6 +35,7 @@ class AngularTemplateFilter extends BaseNodeFilter
     public function filterLoad(AssetInterface $asset)
     {
         $moduleName = $this->templateNameFormatter->getModuleForAsset($asset);
+        $moduleName = 'app';
         $templateName = $this->templateNameFormatter->getForAsset($asset);
 
         $content = addslashes($asset->getContent());
