@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Asoc\AsseticAngularJsBundle\DependencyInjection;
+namespace Miguel\AsseticAngularJsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('asoc_assetic_angular_js');
+        $rootNode = $treeBuilder->root('miguel_assetic_angular_js');
 
         $rootNode
             ->children()

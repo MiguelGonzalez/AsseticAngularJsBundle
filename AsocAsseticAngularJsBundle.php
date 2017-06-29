@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Asoc\AsseticAngularJsBundle;
+namespace Miguel\AsseticAngularJsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AsocAsseticAngularJsBundle extends Bundle
+class MiguelAsseticAngularJsBundle extends Bundle
 {
 }

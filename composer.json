@@ -1,11 +1,15 @@
 {
-    "name": "asoc/assetic-angular-js-bundle",
+    "name": "miguel/assetic-angular-js-bundle",
     "description": "Assetic filter to output AngularJS templates for the template cache",
     "keywords": ["assetic", "angular", "template"],
     "license": "MIT",
     "type": "symfony-bundle",
-    "homepage": "https://github.com/AStateOfCode/AsseticAngularJsBundle",
+    "homepage": "https://github.com/MiguelGonzalez/AsseticAngularJsBundle",
     "authors": [
+        {
+            "name": "Miguel González",
+            "email": "miguelgonzalezgomez@gmail.com"
+        },
         {
             "name": "Pascal Kuendig",
             "email": "padakuro@gmail.com"
@@ -16,10 +20,10 @@
         "php": ">=5.3.3",
         "symfony/assetic-bundle": "~2.3"
     },
-    "target-dir": "Asoc/AsseticAngularJsBundle",
+    "target-dir": "Miguel/AsseticAngularJsBundle",
     "autoload": {
         "psr-0": {
-            "Asoc\\AsseticAngularJsBundle": ""
+            "Miguel\\AsseticAngularJsBundle": ""
         }
     }
 }

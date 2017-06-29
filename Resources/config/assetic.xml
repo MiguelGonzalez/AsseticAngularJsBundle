@@ -5,20 +5,20 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="asoc_assetic_angular_js.template_name_formatter.class">Asoc\AsseticAngularJsBundle\Angular\SymfonyTemplateNameFormatter</parameter>
-        <parameter key="assetic.filter.angular.class">Asoc\AsseticAngularJsBundle\Assetic\Filter\AngularTemplateFilter</parameter>
+        <parameter key="miguel_assetic_angular_js.template_name_formatter.class">Miguel\AsseticAngularJsBundle\Angular\SymfonyTemplateNameFormatter</parameter>
+        <parameter key="assetic.filter.angular.class">Miguel\AsseticAngularJsBundle\Assetic\Filter\AngularTemplateFilter</parameter>
         <parameter key="assetic.filter.angular.timeout">null</parameter>
     </parameters>
 
     <services>
-        <service id="asoc_assetic_angular_js.template_name_formatter.default"
-                 class="%asoc_assetic_angular_js.template_name_formatter.class%"
+        <service id="miguel_assetic_angular_js.template_name_formatter.default"
+                 class="%miguel_assetic_angular_js.template_name_formatter.class%"
                  public="false">
             <argument type="service" id="kernel"/>
         </service>
         <service id="assetic.filter.angular"
                  class="%assetic.filter.angular.class%">
-            <argument type="service" id="asoc_assetic_angular_js.template_name_formatter"/>
+            <argument type="service" id="miguel_assetic_angular_js.template_name_formatter"/>
             <tag name="assetic.filter" alias="angular"/>
             <call method="setTimeout">
                 <argument>%assetic.filter.angular.timeout%</argument>

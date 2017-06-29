@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Asoc\AsseticAngularJsBundle\Assetic\Filter;
+namespace Miguel\AsseticAngularJsBundle\Assetic\Filter;
 
-use Asoc\AsseticAngularJsBundle\Angular\TemplateNameFormatterInterface;
+use Miguel\AsseticAngularJsBundle\Angular\TemplateNameFormatterInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\BaseNodeFilter;
 
@@ -23,7 +23,7 @@ use Assetic\Filter\BaseNodeFilter;
 class AngularTemplateFilter extends BaseNodeFilter
 {
     /**
-     * @var \Asoc\AsseticAngularJsBundle\Angular\TemplateNameFormatterInterface
+     * @var \Miguel\AsseticAngularJsBundle\Angular\TemplateNameFormatterInterface
      */
     private $templateNameFormatter;
 

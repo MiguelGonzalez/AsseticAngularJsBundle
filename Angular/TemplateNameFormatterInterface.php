@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Asoc\AsseticAngularJsBundle\Angular;
+namespace Miguel\AsseticAngularJsBundle\Angular;
 
 use Assetic\Asset\AssetInterface;
 
