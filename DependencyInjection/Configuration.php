@@ -31,7 +31,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('formatter_id')->defaultNull()->end()
+                ->scalarNode('app_name')->defaultValue('app')->end()
             ->end();
 
         return $treeBuilder;

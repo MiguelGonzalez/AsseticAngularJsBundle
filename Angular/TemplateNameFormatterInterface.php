@@ -13,7 +13,7 @@ namespace Miguel\AsseticAngularJsBundle\Angular;
 
 use Assetic\Asset\AssetInterface;
 
-interface TemplateNameFormatterInterface
-{
+interface TemplateNameFormatterInterface {
+	public function getModuleName();
     public function getForAsset(AssetInterface $asset);
 }

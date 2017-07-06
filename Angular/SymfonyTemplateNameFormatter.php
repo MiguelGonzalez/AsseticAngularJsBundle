@@ -14,8 +14,7 @@ namespace Miguel\AsseticAngularJsBundle\Angular;
 use Assetic\Asset\AssetInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface
-{
+class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface {
 
     /**
      * Bundle map: bundle root => bundle name
@@ -25,33 +24,26 @@ class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface
      * @var array
      */
     private $bundleMap;
+    private $appName;
 
-    public function __construct(KernelInterface $kernel)
-    {
+    public function __construct(KernelInterface $kernel, $appName) {
         $bundleMap = array();
         foreach ($kernel->getBundles() as $bundle) {
             $bundleMap[$bundle->getPath()] = $bundle->getName();
         }
 
         $this->bundleMap = $bundleMap;
+        $this->appName = $appName;
     }
 
     /**
      * Create module name for asset.
      * This is bundle name.
      *
-     * @param AssetInterface $asset
      * @return string
      */
-    public function getModuleForAsset(AssetInterface $asset)
-    {
-        $sourceRoot = $asset->getSourceRoot();
-        $bundleName = $this->bundleMap[$sourceRoot];
-        if (!isset($bundleName)) {
-            throw new \Exception('Could not map the asset to a bundle');
-        }
-
-        return $bundleName . '.templates';
+    public function getModuleName() {
+        return $this->appName;
     }
 
     /**
@@ -60,24 +52,29 @@ class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface
      * @param AssetInterface $asset
      * @return string
      */
-    public function getForAsset(AssetInterface $asset)
-    {
+    public function getForAsset(AssetInterface $asset) {
+        $isInsideBundle = true;
         $sourceRoot = $asset->getSourceRoot();
         if (!isset($this->bundleMap[$sourceRoot])) {
-            throw new \Exception('Could not map the asset to a bundle');
+            $isInsideBundle = false;
         }
 
         // get the relative path
         $templateName = $asset->getSourcePath();
-        // by convention, all symfony views are in Resources/views/, therefore remove this segment
-        $templateName = str_replace('Resources/views/', '', $templateName);
-        // remove the .ng extension (our convention)
-        $templateName = str_replace('.ng', '', $templateName);
-        // prepend bundle name
-        $bundleName = $this->bundleMap[$sourceRoot];
-        $templateName = sprintf('%s/%s', $bundleName, $templateName);
+        
+        if ($isInsideBundle &&
+                ($posResources = strpos($templateName, 'Resources')) !== false) {
+            // All symfony views in a bundle are in Resources/, therefore remove this segment
+            $templateName = substr($templateName, $posResources + 10);
+        }
+
+        if($isInsideBundle) {
+            // prepend bundle name
+            $bundleName = $this->bundleMap[$sourceRoot];
+            $templateName = sprintf('%s/%s', $bundleName, $templateName);
+        }
 
         return $templateName;
     }
 
-} 
+}

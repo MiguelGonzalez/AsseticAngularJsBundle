@@ -20,22 +20,19 @@ use Assetic\Filter\BaseNodeFilter;
  *
  * @link http://angularjs.com/
  */
-class AngularTemplateFilter extends BaseNodeFilter
-{
+class AngularTemplateFilter extends BaseNodeFilter {
     /**
      * @var \Miguel\AsseticAngularJsBundle\Angular\TemplateNameFormatterInterface
      */
     private $templateNameFormatter;
 
-    public function __construct(TemplateNameFormatterInterface $templateNameFormatter)
-    {
+    public function __construct(TemplateNameFormatterInterface $templateNameFormatter) {
         $this->templateNameFormatter = $templateNameFormatter;
     }
 
     public function filterLoad(AssetInterface $asset)
     {
-        $moduleName = $this->templateNameFormatter->getModuleForAsset($asset);
-        $moduleName = 'app';
+        $moduleName = $this->templateNameFormatter->getModuleName();
         $templateName = $this->templateNameFormatter->getForAsset($asset);
 
         $content = addslashes($asset->getContent());
@@ -58,7 +55,6 @@ JS;
         $asset->setContent($js);
     }
 
-    public function filterDump(AssetInterface $asset)
-    {
+    public function filterDump(AssetInterface $asset) {
     }
 }

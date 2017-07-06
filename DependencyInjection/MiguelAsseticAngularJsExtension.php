@@ -21,26 +21,24 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class MiguelAsseticAngularJsExtension extends Extension
-{
+class MiguelAsseticAngularJsExtension extends Extension {
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
-        $configuration = new Configuration();
+    public function load(array $configs, ContainerBuilder $container) {
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $configuration = $this->getConfiguration($configs, $container);
+
         $config = $this->processConfiguration($configuration, $configs);
 
-        if ($config['formatter_id'] === null) {
-            $container->setAlias(
-                'miguel_assetic_angular_js.template_name_formatter',
-                'miguel_assetic_angular_js.template_name_formatter.default'
-            );
-        } else {
-            $container->setAlias('miguel_assetic_angular_js.template_name_formatter', $config['formatter_id']);
-        }
-
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $container->setAlias(
+            'miguel_assetic_angular_js.template_name_formatter',
+            'miguel_assetic_angular_js.template_name_formatter.default'
+        );
+        
         $loader->load('assetic.xml');
+
+        $container->setParameter('assetic.filter.angular.app_name',
+                $config['app_name']);
     }
 }
